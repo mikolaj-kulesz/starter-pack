@@ -1,0 +1,65 @@
+/* ==========================================================================
+	Variables
+/* ========================================================================== */
+/* Directories */
+
+$images_dir: '../images/';
+
+$font-primary   : 'Lato', sans-serif;
+$font-secondary : 'Oswald', sans-serif;
+
+/* Colors */
+$header-bg			: #d6b3d4;
+$nav-hover			: #82d082;
+$nav-sub-hover		: #a8dea8;
+$sub-bt-bgc			: #5dc85d;
+$main-green			: #5dc85d;
+$white		    	: #fff;
+$rss-btn-bg			: #fbb548;
+$main-gray			: #555555;
+$light-gray      	: #d6d6d6;
+$start-trial-btn-bg : #e34840;
+$footer-bg			: #2e2e2e;
+$dark-gray       	: #232323;
+
+$base-color			: #212222;
+$color-body_copy	: #444;
+$color-link			: #26527c;
+$color-opposite 	: #fff;
+$transparent-white	: rgba(255,255,255,0.3);
+$lightgray2     	: #999;
+$lightgray3       	: #8e8e8e;
+$darkgray2       	: #333;
+$lightyellow    	: #fcce00;
+$lightyellow2   	: #fffbe8;
+$lightblue      	: #53b8ee;
+
+/* Font Sizes */
+$size_base: 1em;
+
+/* Shadows */
+$textshadow-one : 1px 1px 1px rgba(76, 76, 76, 0.95);
+
+/* Border radius */
+$default-border-radius : 10px;
+
+/* Margin, Padding */
+$dist-unit: 1rem;
+$unit: $dist-unit;
+
+/*Media Queries */
+$layout: 'only screen and (max-width: 1200px)';
+$tablet: 'only screen and (max-width: 940px)';
+$mobile: 'only screen and (max-width: 660px)';
+
+$retina: 'only screen and (-webkit-min-device-pixel-ratio: 2),
+		  only screen and (   min--moz-device-pixel-ratio: 2),
+		  only screen and (     -o-min-device-pixel-ratio: 2/1),
+		  only screen and (        min-device-pixel-ratio: 2),
+		  only screen and (                min-resolution: 192dpi),
+		  only screen and (                min-resolution: 2dppx)';
+
+
+
+/* Other */
+$logo-width: 94px; 

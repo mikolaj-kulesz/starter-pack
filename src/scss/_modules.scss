@@ -1,0 +1,892 @@
+
+// =================================================
+// headBlock
+
+.headerBlock {
+	background: $header-bg url($images_dir + 'svg/banner.svg') no-repeat bottom 120px right calc(50% + 350px);
+	background-size: auto 70%;
+	background: red;
+
+	@media #{$mobile} {
+		background-size: auto 60%;
+		background-position: bottom 120px right 50px;
+	}
+
+	.blockContainer {
+		@include flex($fd: column, $jc: space-between);
+		height: 80vh;
+		min-height: 450px;
+
+		@media #{$mobile} {
+			min-height: 100vh;
+		}
+	}
+
+	.topBar {
+		@extend .layout;
+		@include flex($jc: space-between);
+		padding-top: $unit * 2;
+		width: 100%;
+
+		@media #{$mobile} {
+			padding-top: $unit/2;
+		}
+
+		.navBox {
+			@include flex();
+		}
+
+		.logo {
+			@include ratioBox(55%);
+			display: block;
+			width: $logo-width;
+			background: url($images_dir + 'svg/logo.svg') no-repeat top left;
+			background-size: contain;
+			position: relative;
+
+			&:before {
+				content: attr(data-name); 
+				position: absolute;
+				top: 10px; left: 110%;
+				text-transform: uppercase;
+				color: $white;
+				font-size: 0.9em;
+				font-weight: 300;
+			}
+		}
+
+		nav {
+			margin-left: $logo-width;
+
+			& > ul {
+				@include flex($jc: space-between);
+
+				& > li {
+					position: relative;
+					border-top-left-radius: 3px;
+					border-top-right-radius: 3px;
+
+					&:hover {
+						background-color: $nav-hover;
+					}
+
+					a {
+						color: $white;
+						display: block;
+					}
+
+					& > a {
+						padding: 5px 20px;
+						font-size: 0.8em;
+						text-transform: uppercase;
+					}
+
+					ul {
+						display: none;
+						position: absolute;
+						background-color: $nav-hover;
+						min-width: 100%;
+						border-bottom-left-radius: 3px;
+						border-bottom-right-radius: 3px;
+						padding: 10px 0;
+
+						li {
+							text-align: center;
+
+							&:hover {
+								background-color: $nav-sub-hover;
+							}
+
+							a {
+								font-size: 0.8em;
+								padding: 10px 8px;
+								white-space: nowrap;
+								text-transform: lowercase;
+							}
+						}
+					}
+
+					&:hover {
+						ul {
+							@include flex($fd: column);
+						}
+					}
+				}
+			}
+
+			@media #{$tablet} {
+				display: none;
+			}
+		}
+
+		.keepintouchButtons {
+			@extend .defaultBtnList;
+
+			@media #{$tablet} {
+				display: none;
+			}
+		}
+	}
+
+	.audioBox {
+		@extend .layout;
+		padding: 0;
+		width: 100%;
+	}
+}
+
+.maininfoBlock {
+	text-align: center;
+	padding: 8*$unit 20px;
+	font-weight: 300;
+
+	@media #{$tablet} {
+		padding: 5*$unit 20px;
+
+		@media #{$mobile} {
+			padding: 2*$unit 10px;
+		}
+	}
+
+
+
+	h1 {
+		font-size: 2em;
+		color: $main-green;
+		margin-bottom: 3*$unit;
+
+		@media #{$mobile} {
+			font-size: 1.6em;
+			margin-bottom: 1*$unit;
+		}
+	}
+
+	p {
+		font-size: 1.2em;
+		line-height: 1.7;
+		max-width: 660px;
+		margin: 0 auto;
+
+		strong {
+			font-weight: 400;
+		}
+	}
+}
+
+.episodesBlock {
+	@extend .layout;
+
+	.mainBar {
+		@include flex($jc: space-between);
+
+		h2 {
+			font-size: 1.3em;
+			color: $main-gray;
+			letter-spacing: 0.1em;
+
+			@media #{$mobile} {
+				font-size: 1em;
+			}
+		}
+
+		.layoutSwitchBtton {
+			$btn-width: 60px;
+			$btn-height: 30px;
+
+			@include flex($ai: center);
+
+			.btn.switch {
+				width: $btn-width;
+				height: $btn-height;
+				border-radius: $btn-height;
+				background-color: $main-gray;
+				box-shadow:-2px 4px 5px 0px rgba(0,0,0,0.3) inset;
+				position: relative;
+				cursor:pointer;
+				transition: background-color 0.3s ease-in-out;
+
+				@media #{$mobile} {
+					width: 30px;
+					height: 16px;
+					border-radius: 16px;
+				}
+
+				&:before {
+					content: attr(data-label); 
+					display: block;
+					position: absolute;
+					top: 0; right: 100%;
+					height: $btn-height;
+					line-height: $btn-height;
+					font-size:0.8em;
+					text-transform: lowercase;
+					padding-right: 1em;
+					white-space: nowrap;
+
+					@media #{$mobile} {
+						display: none;
+					}
+				}
+
+				&:hover {
+					background-color: lighten($main-gray, 20%);
+				}
+
+				&:after {
+					content: '';
+					width: $btn-height - 10;
+					height: $btn-height - 10;
+					background-color: $white;
+					border-radius: $btn-height - 10;
+					position: absolute;
+					top: 5px; left:5px;
+					box-shadow:2px 2px 2px 0px rgba(0,0,0,0.3);
+					transition: left 0.3s ease-in-out;
+
+					@media #{$mobile} {
+						width: 10px;
+						height: 10px;
+						top: 3px; left:3px;
+					}				
+				}
+
+				&.on:after {
+					position: absolute;
+					top: 5px; left:35px;
+
+					@media #{$mobile} {
+						width: 10px;
+						height: 10px;
+						top: 3px; left:17px;
+					}
+				}
+			}
+		}
+	}
+
+	.episodesListRows {
+
+		@extend .episodesList;
+
+		ul {
+			li {
+
+				.photoBox {
+
+					@media #{$tablet} {
+						width: 120px;
+					}
+
+					@media #{$mobile} {
+						width: 0;
+					}
+				}
+
+				.infoBox {
+					.mainInfo {
+						padding-left: 2.2em;
+						background: url($images_dir + 'svg/ico_arrow.svg') no-repeat top 50% left 0;
+						background-size: 1.4em auto;
+						position: relative;
+
+						&:after {
+							content: attr(data-duration); 
+							position: absolute;
+							top: $unit;
+							right: $unit;
+							color: $main-green;
+
+							@media #{$mobile} {
+								display: none;
+							}
+						}
+					}
+
+					p:nth-of-type(1) {
+						padding: $unit/2 0;	
+					}
+				}
+			}
+		}
+	}
+
+	.episodesListBoxes {
+		@extend .episodesList;
+
+		ul {
+			@include flex( $jc: center );
+
+			li {
+				@include flex();
+				max-width: 320px;
+				margin: $unit;
+
+				&:last-child {
+					margin: $unit;
+				}
+
+				.photoBox {
+					width: 100%;
+				}
+
+				.infoBox {
+					padding: 2*$unit;
+					position: relative;
+
+					&:after {
+						$circle-size: 50px;
+						content: '';
+						display: block;
+						width: $circle-size;
+						height: $circle-size;
+						border-radius: 50%;
+						position: absolute;
+						top: -1 * ($circle-size/2);
+						left: calc(50% - 25px);
+						background: $white url($images_dir + 'svg/ico_arrow_green.svg') no-repeat top 50% left 50%;
+						background-size: 40%;
+					}
+
+					.mainInfo {
+						margin-bottom: 0.5em;
+					}
+				}
+			}
+		}
+	}
+
+	.loadMore {
+		text-align: center;
+
+		.btn {
+			display: inline-block;
+			padding: 0.8em 2em;
+			background: $main-gray;
+			color: $white;
+			border-radius: 3px;
+			font-size: 0.8em;
+			text-transform: uppercase;
+			cursor: pointer;
+
+			&:hover {
+				background: lighten($main-gray, 10%);
+			}
+		}
+	}
+}
+
+.authorBlock {
+	@extend .layout;
+	padding-top: 5*$dist-unit;
+	padding-bottom: 5*$dist-unit;
+
+	@media #{$mobile} {
+		padding-top: 2*$dist-unit;
+		padding-bottom: 2*$dist-unit;
+	}
+
+	.mainBar {
+		@extend .boxHeader;
+	}
+
+	.authorBox {
+		@include flex( $jc: center, $fw: wrap );
+
+		.photoBox {
+			width: 100%;
+			max-width: 180px;
+		}
+
+		.photo {
+			width: 100%;
+			@include ratioBox();
+			border-radius: 50%;
+			box-shadow: -7px 7px 10px 0px rgba(0, 0, 0, 0.23) inset;
+			background-size: cover;
+			background-image: url($images_dir + 'author.jpg');
+			background-repeat: no-repeat;
+			background-position: center center;
+			margin-bottom: 1em;
+
+			@media #{$retina} {
+				background-image: url($images_dir + 'author@2x.jpg');
+			}
+		}
+
+		.infoBox {
+			max-width: 420px;
+			border-top: 1px solid $main-green;
+			padding-left: 120px;
+			margin-left: 40px;
+			font-weight: 300;
+
+			@media #{$tablet} {
+				padding: 0 1em;
+				margin: 0 2em;
+			}
+
+			@media #{$mobile} {
+				padding: 0;
+				margin: 0;
+			}
+
+			h3 {
+				font-size: 2em;
+				margin-bottom: 1em;
+				color: $main-green;
+			}
+
+			p {
+				font-size: 0.8em;
+				margin-bottom: $dist-unit;
+			}
+
+			.socialContact {
+				@extend .socialMediaList;
+
+				h4 {
+					font-size: 0.7em;
+					text-transform: uppercase;
+				}
+			}
+		}
+	}
+}
+
+.poweredbyBlock {
+	background-color: $main-green;
+	padding-top: $dist-unit * 3;
+	padding-bottom: $dist-unit * 4;
+	color: $white;
+
+	@media #{$mobile} {
+		padding-top: 2*$dist-unit;
+		padding-bottom: 2*$dist-unit;
+	}
+
+	.mainBar {
+		@extend .boxHeader;
+		margin-bottom: 2em;
+	}
+
+	.contentBox {
+		@include flex( $fd: column, $jc: center, $fw: wrap, $ai: center );
+		font-size: 1.2em;
+		font-weight: 300;
+
+		img:nth-of-type(1) {
+			max-width: 118px;
+		}
+
+		img:nth-of-type(2){
+			width: 80%;
+			display: block;
+			max-width: 541px;
+		}
+
+		p {
+			max-width: 660px;
+			margin: 3em 0;
+			line-height: 1.7;
+
+			strong {
+				font-weight: 400;
+			}
+		}
+	}
+}
+
+.trylivechatBlock {
+	@include flex( $fd: column, $jc: center, $fw: wrap, $ai: center );
+	@extend .layout;
+	padding-top: (5 * $dist-unit); 
+	padding-bottom: (5 * $dist-unit);
+	text-align: center;
+	font-weight: 300;
+
+	@media #{$mobile} {
+		padding-top: 2*$dist-unit;
+		padding-bottom: 2*$dist-unit;
+	}
+
+	h2 {
+		font-size: 2em;
+		margin-bottom: 0.5 * $dist-unit;
+	}
+
+	& > p {
+		font-size: 0.8em;
+		margin-bottom: $dist-unit;
+	}
+
+	form {
+		@include flex( $fd: column, $jc: center, $fw: wrap, $ai: center );
+		$field_width: 266px;
+		input {
+			width: $field_width;
+			border: 1px solid $light-gray;
+			border-radius: 3px;
+			padding: 8px;
+			margin-bottom: 0.5 * $dist-unit;
+			font-weight: 300;
+			font-size: 0.8em;
+		}
+
+		button {
+			width: $field_width;
+			border: 0px;
+			border-radius: 3px;
+			padding: 12px;
+			background: $start-trial-btn-bg;
+			text-transform: uppercase;
+			color: $white;
+			cursor: pointer;
+			font-size: 0.8em;
+			letter-spacing: 0.1em;
+
+			&:hover {
+				background: lighten($start-trial-btn-bg, 10%);
+			}
+		}
+	}
+}
+
+.footerBlock {
+	@include flex( $jc: center, $fw: wrap, $ai: center );
+	background: $footer-bg;
+	padding: (5 * $dist-unit) 0;
+	border-bottom: 42px solid $dark-gray;
+
+	@media #{$mobile} {
+		padding: (2 * $dist-unit) 0;
+	}
+
+	@media #{$layout} {
+		@include flex( $fd: column, $jc: flex-start, $fw: wrap, $ai: '' );
+	}
+
+	.smBox {
+		@extend .socialMediaListWhite;
+	}
+
+	.btnBox {
+		@extend .defaultBtnList;
+		border-left: 1px solid $main-gray;
+		border-right: 1px solid $main-gray;
+		padding: $dist-unit/2 $dist-unit;
+		margin: 0 $dist-unit;
+
+		.btn {
+		    text-transform: none;
+			font-size: 0.75rem;
+		}
+
+		@media #{$layout} {
+			border: 0;
+			padding: 0;
+			margin: 2*$dist-unit 0;
+		}
+	}
+
+	.subBox {
+
+		.container {
+			position: relative;
+		}
+
+		input {
+			height: 30px;
+			border:0;
+			border-radius: 3px;
+			font-size: 0.8em;
+			padding: 0 10px;
+		}
+
+		button {
+			position: absolute;
+			top: 0; bottom: 0; right: 0;
+			width: 40px;
+			background: #8ed78e;
+			text-transform: uppercase;
+			color: $white;
+			border: 0;
+			border-top-right-radius: 3px;
+			border-bottom-right-radius: 3px;
+			cursor: pointer;
+		}
+	}
+}
+
+.detailContentBlock {
+	@extend .content-layout;
+	
+	h1 {
+		font-size: 3em;
+		font-weight: 300;
+		color: $main-green;
+		padding: 5*$dist-unit 0;
+		text-align: center;
+		transition: font-size 0.3s linear;
+
+		@media #{$tablet} {
+			font-size: 2em;
+			padding: 2*$dist-unit 0;
+		}
+
+		@media #{$mobile} {
+			font-size: 1.4em;
+			padding: 2*$dist-unit 0;
+		}
+	}
+
+	& > div {
+		margin-bottom: 3 * $dist-unit;
+
+		& > h2 {
+			font-size: 1.2em;
+			margin-bottom: $dist-unit;
+			text-transform: uppercase;
+			letter-spacing: 0.1em;
+		}
+	}
+
+	p {
+		font-size: 1.2em;
+		font-weight: 300;
+	}
+
+	.shareBox {
+		@extend .socialMediaList;
+
+		h3 {
+			font-size: 0.8em;
+		}
+	}
+
+	.learnBox {
+
+		ul {
+			list-style-type: disc;
+			padding-left: 1em;
+			margin-bottom: 3 * $dist-unit;
+
+			li {
+				line-height: 1.9;
+				font-weight: 300;
+				font-size: 1.2em;
+			}
+		}
+	}
+
+	.guestBox {
+
+		.guest {
+			@include flex( $fw: nowrap);
+			
+			@media #{$mobile} {
+				@include flex( $fw: wrap);
+			}
+
+			.photoBox {
+				width: 100%;
+				max-width: 128px;
+				margin-right: 2em;
+				margin-bottom: 1em;
+				flex: 0 0 auto;
+
+				.photo {
+					width: 100%;
+					@include ratioBox();
+					border-radius: 50%;
+					box-shadow: -7px 7px 10px 0px rgba(0, 0, 0, 0.23) inset;
+					background-image: url($images_dir + 'guest.jpg');
+					background-size: cover;
+					background-repeat: no-repeat;
+					background-position: center center;
+
+					@media #{$mobile} {
+						background-image: url($images_dir + 'guest@2x.jpg');
+					}
+				}
+
+			}
+			.infoBox {
+
+				h3 {
+					font-size: 1.2em;
+					font-weight: bold;
+					margin-bottom: 1em;
+				}
+
+				strong {
+					font-weight: 400;
+					color: $main-green;
+				}
+			}
+		}
+	}
+
+	.hashtagBox {
+		@include flex();
+
+		a {
+			color: $main-green;
+			transition: border-bottom 0.3s linear;
+			border-bottom: 1px solid $white;
+			margin-right: $dist-unit;
+			font-size: 0.9em;
+			letter-spacing: 0.1em;
+
+			&:before {
+				content: '#';
+			}
+
+			&:hover {
+				border-bottom: 1px solid $main-green;
+			}
+		}
+	}
+
+	.transcriptBox {
+		.content {
+			padding-left: 2em;
+
+			p {
+				margin-bottom: $dist-unit * 1.5;
+			}
+
+			hr {
+				margin: 0 auto;
+				height: 1px;
+				display: block;
+				width: 70px;
+				background: $main-gray;
+				border: 0;
+				margin-bottom: $dist-unit * 1.5;
+			}
+		}
+	}
+
+	.relatedBox {
+		ul li {
+			@include flex( $jc: space-between, $fw: nowrap );
+			width: 80%;
+			text-transform: uppercase;
+			margin-bottom: 2*$dist-unit;
+
+			@media #{$tablet} {
+				width: 100%;
+			}
+
+			&:last-child {
+				margin-bottom: 0;
+			}
+
+			&:hover {
+				color: $main-green;
+			}
+
+			p {
+				strong {
+					font-weight: bold;
+				}
+			}
+
+			time {
+				flex: 0 0 auto;
+				display: block;
+				padding-left: $dist-unit;
+			}
+		}
+	}
+}
+
+.commentsBlock {
+	min-height: 70vh;
+	background-color: $light-gray;
+}
+
+
+.openMobileMenu {
+	$btn-size: 45px;
+
+	display: none;
+	width: $btn-size;
+	height: $btn-size;
+	border-radius: 3px;
+	border: 0;
+	background: url($images_dir + 'svg/ico_ham_on.svg') no-repeat top 50% left 50%;
+	background-size: 100% 100%;
+	cursor: pointer;
+	position: relative;
+	transition: background-size 0.1s cubic-bezier(.17,.67,.42,.8);
+
+	&:after {
+		transition: height 0.1s cubic-bezier(.17,.67,.42,.8);
+		content: '';
+		display: block;
+		position: absolute;
+		top: 0; left:0;
+		width: 100%;
+		height: 0%;
+		background: $header-bg url($images_dir + 'svg/ico_ham_off.svg') no-repeat top 50% left 50%;
+		background-size: 100% 100%;
+
+	}
+
+	&.on {
+		background-size: 100% 0;;
+
+		&:after {
+			height:100%;
+		}
+	}
+
+	@media #{$tablet} {
+		display: block;
+	}
+
+}
+
+.mobilemenuBlock {
+	background-color: $nav-hover;
+	color: $white;
+	display: none;
+
+	ul li a {
+		display: block;
+		padding: 0 $dist-unit;
+	}
+
+	& > ul > li {
+		font-size: 1.6rem;
+		font-weight: bold;
+		border-bottom: 1px solid darken($nav-hover, 8%);
+		padding-bottom: $dist-unit;
+		background: url($images_dir + 'svg/ico_arrow_down.svg') no-repeat top 1em right $dist-unit, url($images_dir + 'svg/ico_arrow_up.svg') no-repeat top 200% right $dist-unit;
+		transition: background-position 0.1s cubic-bezier(.17,.67,.42,.8);
+
+		& > a {
+			padding: $dist-unit;
+		}
+
+		& > ul {
+			margin-left: $dist-unit;
+			display: none;
+			
+			& > li {
+				font-size: 1.2rem;
+				color: $light-gray;
+				font-weight: normal;
+			}
+		}
+
+		&.on {
+			background-color: darken($nav-hover, 20%);
+			background-position: top -100% right $dist-unit, top 1em right $dist-unit;
+			& > ul {
+				//display: block;
+			}
+		}
+	}
+}
